@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Groupr.Client.GroupsDetail
+namespace Groupr.Client.Children
 {
     /// <summary>
     ///     Interaction logic for ChildControl.xaml

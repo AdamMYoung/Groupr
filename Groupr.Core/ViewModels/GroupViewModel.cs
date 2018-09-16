@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -12,6 +13,9 @@ namespace Groupr.Core.ViewModels
     /// </summary>
     public class GroupViewModel: ViewModelBase
     {
+
+        #region Variables
+
         /// <summary>
         /// Name of the group.
         /// </summary>
@@ -23,6 +27,12 @@ namespace Groupr.Core.ViewModels
         /// </summary>
         [XmlIgnore]
         public Bitmap Image { get; set; }
+
+        /// <summary>
+        /// Unique identifier of the group.
+        /// </summary>
+        [XmlElement("Uid")]
+        public string Uid { get; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Collection of all children attached to the specified group.
@@ -58,5 +68,7 @@ namespace Groupr.Core.ViewModels
                 }
             }
         }
+
+        #endregion
     }
 }

@@ -83,6 +83,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Children\ChildManager.cs" />
+    <Compile Include="Children\New\CreateChildDialog.xaml.cs">
+      <DependentUpon>CreateChildDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Groups\GroupsManager.cs" />
     <Compile Include="Groups\GroupView.xaml.cs">
       <DependentUpon>GroupView.xaml</DependentUpon>
@@ -90,8 +93,16 @@
     <Compile Include="Groups\New\CreateGroupDialog.xaml.cs">
       <DependentUpon>CreateGroupDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Children\New\CreateChildDialogViewModel.cs" />
+    <Compile Include="Util\Confirmation\ConfirmDeleteDialog.xaml.cs">
+      <DependentUpon>ConfirmDeleteDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window\MainViewModel.cs" />
     <Page Include="Children\ChildControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Children\New\CreateChildDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -104,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Groups\New\CreateGroupDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Util\Confirmation\ConfirmDeleteDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,9 +181,7 @@
       <Name>Groupr.IO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Children\New\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.3.2.2\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.2\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

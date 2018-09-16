@@ -23,6 +23,11 @@ namespace Groupr.IO
         private static readonly string GroupsFile = Path.Combine(GroupsPath, "SavedGroups.xml");
 
         /// <summary>
+        /// Stored list of groups.
+        /// </summary>
+        private static List<GroupViewModel> Groups { get; set; }
+
+        /// <summary>
         /// Initializes directories used by the FileManager.
         /// </summary>
         static FileManager()
@@ -51,7 +56,7 @@ namespace Groupr.IO
         ///     Saves all passed groups to the disk.
         /// </summary>
         /// <param name="groups">Collection of groups to save to disk.</param>
-        public static void SaveGroups(ICollection<GroupViewModel> groups)
+        public static void SaveGroups(IList<GroupViewModel> groups)
         {
             if (groups.Count == 0)
                 return;

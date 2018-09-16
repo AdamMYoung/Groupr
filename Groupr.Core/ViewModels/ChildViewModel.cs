@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 using GalaSoft.MvvmLight;
 
 namespace Groupr.Core.ViewModels
@@ -19,6 +20,12 @@ namespace Groupr.Core.ViewModels
         /// </summary>
         [XmlElement("Path")]
         public string Path { get; set; }
+
+        /// <summary>
+        /// Unique identifier of the child.
+        /// </summary>
+        [XmlElement("Uid")]
+        public string Uid { get; } = Guid.NewGuid().ToString();
 
     }
 }
