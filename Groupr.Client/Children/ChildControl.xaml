@@ -1,32 +1,32 @@
-﻿<UserControl x:Class="Groupr.Client.GroupsDetail.ChildControl"
+﻿<UserControl x:Class="Groupr.Client.Children.ChildControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:window="clr-namespace:Groupr.Client.Window"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance window:MainViewModel}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="New Entry" Margin="5" Command="{Binding ChildManager.CreateEntryCommand}"/>
-            <Button Content="Delete Entry" Margin="5" Command="{Binding ChildManager.DeleteEntryCommand}"/>
+            <Button Content="New Entry" Margin="5" Command="{Binding ChildManager.CreateEntryCommand}" />
+            <Button Content="Delete Entry" Margin="5" Command="{Binding ChildManager.DeleteEntryCommand}" />
         </StackPanel>
 
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding ChildManager.Group.Children}"
-                  SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False" 
+                  SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False"
                   SelectedItem="{Binding ChildManager.SelectedChild}">
             <DataGrid.Columns>
 
-                <DataGridTextColumn Header="Title" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Path" Binding="{Binding Path}" Width="2*"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="Path" Binding="{Binding Path}" Width="2*" />
 
             </DataGrid.Columns>
         </DataGrid>

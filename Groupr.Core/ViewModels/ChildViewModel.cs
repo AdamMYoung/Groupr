@@ -25,7 +25,7 @@ namespace Groupr.Core.ViewModels
         /// Unique identifier of the child.
         /// </summary>
         [XmlElement("Uid")]
-        public string Uid { get; } = Guid.NewGuid().ToString();
+        public string Uid { get; set; } = Guid.NewGuid().ToString();
 
     }
 }

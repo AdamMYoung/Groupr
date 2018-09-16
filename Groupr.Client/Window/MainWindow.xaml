@@ -4,8 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:groups="clr-namespace:Groupr.Client.Groups"
-        xmlns:groupsDetail="clr-namespace:Groupr.Client.GroupsDetail"
-        xmlns:client="clr-namespace:Groupr.Client"
         xmlns:window="clr-namespace:Groupr.Client.Window"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:children="clr-namespace:Groupr.Client.Children"

@@ -32,7 +32,7 @@ namespace Groupr.Core.ViewModels
         /// Unique identifier of the group.
         /// </summary>
         [XmlElement("Uid")]
-        public string Uid { get; } = Guid.NewGuid().ToString();
+        public string Uid { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Collection of all children attached to the specified group.

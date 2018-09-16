@@ -21,8 +21,9 @@ namespace Groupr.Client.Children
         {
             Group = group;
             Callback = callback;
-
-            Group.Children.CollectionChanged += (sender, args) => Callback.ChildValueChanged();
+    
+            if(group != null)
+                Group.Children.CollectionChanged += (sender, args) => Callback.ChildValueChanged();
         }
 
         #region Variables

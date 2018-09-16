@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="Groupr.Client.Groups.GroupView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Groupr.Client.Groups"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModels="clr-namespace:Groupr.Core.ViewModels;assembly=Groupr.Core"
@@ -13,13 +13,13 @@
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              d:DataContext="{d:DesignInstance viewModels:GroupViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <materialDesign:Card >
+    <materialDesign:Card>
         <StackPanel Orientation="Horizontal">
 
-            <Image Width="50" Height="50" Source="{Binding Image}"/>
-            <TextBlock Text="{Binding Name}" Margin="5,0,0,0" VerticalAlignment="Center" FontSize="16"/>
+            <Image Width="50" Height="50" Source="{Binding Image}" />
+            <TextBlock Text="{Binding Name}" Margin="5,0,0,0" VerticalAlignment="Center" FontSize="16" />
 
         </StackPanel>
-            
+
     </materialDesign:Card>
 </UserControl>
