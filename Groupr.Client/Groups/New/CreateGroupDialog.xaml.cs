@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Groupr.Client
+namespace Groupr.Client.Groups.New
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CreateGroupDialog.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CreateGroupDialog : UserControl
     {
-        public MainWindow()
+        public CreateGroupDialog()
         {
             InitializeComponent();
         }

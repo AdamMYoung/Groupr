@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="Groupr.Client.Groups.New.CreateGroupDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Groupr.Client.Groups.New"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Title -->
+        <TextBlock Text="Create Group" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+        <!-- Form Inputs -->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <TextBox materialDesign:HintAssist.Hint="Group Name" Width="300" Margin="0,10"/>
+        </StackPanel>
+
+        <!-- Buttons -->
+        <Grid Grid.Row="2" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Cancel -->
+            <Button Content="Cancel" Width="120" Margin="5,0" Command="materialDesign:DialogHost.CloseDialogCommand">
+                <Button.CommandParameter>
+                    <system:Boolean>False</system:Boolean>
+                </Button.CommandParameter>
+            </Button>
+
+            <!-- Save -->
+            <Button Content="Save" Width="120" Margin="5,0" Grid.Column="1" Command="materialDesign:DialogHost.CloseDialogCommand">
+                <Button.CommandParameter>
+                    <system:Boolean>True</system:Boolean>
+                </Button.CommandParameter>
+            </Button>
+        </Grid>
+            
+    </Grid>
+</UserControl>

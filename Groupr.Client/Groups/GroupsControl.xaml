@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Groupr.Client.Groups.GroupsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Groupr.Client.Groups"
+             xmlns:client="clr-namespace:Groupr.Client"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:window="clr-namespace:Groupr.Client.Window"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="14"
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="400"
+             d:DataContext="{d:DesignInstance window:MainViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="New Group" Margin="5" Command="{Binding GroupsManager.CreateGroupCommand}"/>
+            <Button Content="Delete Group" Margin="5" Command="{Binding GroupsManager.DeleteGroupCommand}"/>
+        </StackPanel>
+
+        <!-- Group List -->
+        <ListBox VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectedItem="{Binding GroupsManager.SelectedGroup}"
+                 Grid.Row="1" ItemsSource="{Binding GroupsManager.Groups}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <local:GroupView/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</UserControl>
