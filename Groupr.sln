@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groupr.Client", "Groupr.Client\Groupr.Client.csproj", "{9AC8E680-3440-4061-9D84-83E9918250AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9AC8E680-3440-4061-9D84-83E9918250AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AC8E680-3440-4061-9D84-83E9918250AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AC8E680-3440-4061-9D84-83E9918250AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AC8E680-3440-4061-9D84-83E9918250AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B61D4BC2-2512-4228-8735-6752D323C85D}
+	EndGlobalSection
+EndGlobal
