@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using Groupr.Core.ViewModels;
+using IWshRuntimeLibrary;
+using File = System.IO.File;
 
 namespace Groupr.IO
 {
@@ -51,7 +53,7 @@ namespace Groupr.IO
         ///     Saves all passed groups to the disk.
         /// </summary>
         /// <param name="groups">Collection of groups to save to disk.</param>
-        public static void SaveGroups(IList<GroupViewModel> groups)
+        public static void SaveGroups(List<GroupViewModel> groups)
         {
             if (groups.Count == 0)
                 return;
@@ -69,13 +71,34 @@ namespace Groupr.IO
         /// <param name="group">Group to create a shortcut from.</param>
         internal static string GetGroupShortcut(GroupViewModel group)
         {
-            var appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
-            var shortcutPath = Path.Combine(appDirectory, @"Shortcuts\");
+            var appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var folderPath = Path.Combine(appDirectory, @"Shortcuts\");
+            var shortcutPath = Path.Combine(folderPath, group.Uid + ".lnk");
 
-            Directory.CreateDirectory(shortcutPath);
+            Directory.CreateDirectory(folderPath);
+            if (!File.Exists(shortcutPath))
+                CreateGroupShortcut(group.Uid, shortcutPath);
 
+            return folderPath;
+        }
 
-            return shortcutPath;
+        /// <summary>
+        /// Creates a shortcut, using the groupId as the name and arguments to pass to the popup window.
+        /// </summary>
+        /// <param name="groupId">ID of the group to create.</param>
+        private static void CreateGroupShortcut(string groupId, string path)
+        {   
+            var shortcutAppPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
+                @"..\..\..\Groupr.Popup\bin\Debug\Groupr.Popup.exe"));
+
+            var wsh = new WshShell();
+            if (wsh.CreateShortcut(path + groupId + ".lnk") is IWshShortcut shortcut)
+            {
+                shortcut.Arguments = "/GroupId " + groupId;
+                shortcut.TargetPath = shortcutAppPath;
+
+                shortcut.Save();
+            }
         }
     }
 }

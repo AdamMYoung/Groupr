@@ -109,7 +109,7 @@ namespace Groupr.Client.Groups
         {
             var group = value as GroupViewModel;
 
-            if(group != null && group.IsPinned)
+            if(group != null && !group.IsPinned)
                 TaskbarManager.PinGroup(group);
             else
                 TaskbarManager.UnpinGroup(group);

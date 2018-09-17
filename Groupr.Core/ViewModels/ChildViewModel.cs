@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using GalaSoft.MvvmLight;
 
@@ -21,6 +25,11 @@ namespace Groupr.Core.ViewModels
         /// </summary>
         [XmlElement("Path")]
         public string Path { get; set; }
+        /// <summary>
+        /// Image of the group.
+        /// </summary>
+        [XmlIgnore]
+        public BitmapSource Image { get; set; }
 
         /// <summary>
         /// Unique identifier of the child.
@@ -28,5 +37,36 @@ namespace Groupr.Core.ViewModels
         [XmlElement("Uid")]
         public string Uid { get; set; } = Guid.NewGuid().ToString();
 
+        /// <summary>
+        /// Serialized version of the assigned image.
+        /// </summary>
+        [XmlElement("LargeIcon")]
+        public string ImageSerialized {
+            get
+            {
+                if (Image == null)
+                    return null;
+
+                var encoder = new PngBitmapEncoder();
+                var frame = BitmapFrame.Create(Image);
+                encoder.Frames.Add(frame);
+                using (var stream = new MemoryStream())
+                {
+                    encoder.Save(stream);
+                    return Convert.ToBase64String(stream.ToArray());
+                }
+            }
+            set
+            {
+                if (value == null)
+                    return;
+
+                byte[] bytes = Convert.FromBase64String(value);
+                using (var stream = new MemoryStream(bytes))
+                {
+                    Image = BitmapFrame.Create(stream);
+                }
+            }
+        }
     }
 }

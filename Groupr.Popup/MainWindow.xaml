@@ -5,5 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Groupr.Popup"
         mc:Ignorable="d"
-        Title="" Height="0" Width="0">
+        Title="" Height="200" Width="200">
 </Window>

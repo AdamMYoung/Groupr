@@ -3,9 +3,10 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 
 namespace Groupr.Core.ViewModels
 {
@@ -26,7 +27,7 @@ namespace Groupr.Core.ViewModels
         /// Image of the group.
         /// </summary>
         [XmlIgnore]
-        public Bitmap Image { get; set; }
+        public BitmapSource Image { get; set; }
 
         /// <summary>
         /// Indicates if the group is pinned to the taskbar.
@@ -44,36 +45,37 @@ namespace Groupr.Core.ViewModels
         /// Collection of all children attached to the specified group.
         /// </summary>
         [XmlElement("Children")]
-        public ObservableCollection<ChildViewModel> Children { get; } =
-            new ObservableCollection<ChildViewModel>();
+        public ObservableCollection<ChildViewModel> Children { get; } = new ObservableCollection<ChildViewModel>();
 
         /// <summary>
         /// Serialized version of the assigned image.
         /// </summary>
         [XmlElement("LargeIcon")]
-        public byte[] ImageSerialized
+        public string ImageSerialized
         {
             get
             {
-                if (Image == null) return null;
-                using (MemoryStream ms = new MemoryStream())
+                if (Image == null)
+                    return null;
+
+                var encoder = new PngBitmapEncoder();
+                var frame = BitmapFrame.Create(Image);
+                encoder.Frames.Add(frame);
+                using (var stream = new MemoryStream())
                 {
-                    Image.Save(ms, ImageFormat.Bmp);
-                    return ms.ToArray();
+                    encoder.Save(stream);
+                    return Convert.ToBase64String(stream.ToArray());
                 }
             }
             set
             {
                 if (value == null)
+                    return;
+
+                byte[] bytes = Convert.FromBase64String(value);
+                using (var stream = new MemoryStream(bytes))
                 {
-                    Image = null;
-                }
-                else
-                {
-                    using (MemoryStream ms = new MemoryStream(value))
-                    {
-                        Image = new Bitmap(ms);
-                    }
+                    Image = BitmapFrame.Create(stream);
                 }
             }
         }
