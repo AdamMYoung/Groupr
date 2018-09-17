@@ -16,11 +16,11 @@ namespace Groupr.Client.Groups
         ///     Instantiates a new GroupsManager.
         /// </summary>
         /// <param name="groups">Groups to manage.</param>
-        /// <param name="callback">Callback for group interaction.</param>
-        public GroupsManager(ICollection<GroupViewModel> groups, IGroupsListener callback)
+        /// <param name="groupsCallback">callback for group interaction.</param>
+        public GroupsManager(ICollection<GroupViewModel> groups, IGroupsListener groupsCallback)
         {
             Groups = new ObservableCollection<GroupViewModel>(groups);
-            Callback = callback;
+            GroupsCallback = groupsCallback;
 
             Groups.CollectionChanged += (sender, args) =>
             {
@@ -52,7 +52,7 @@ namespace Groupr.Client.Groups
             set
             {
                 _selectedGroup = value;
-                Callback.GroupSelected(_selectedGroup);
+                GroupsCallback.GroupSelected(_selectedGroup);
             }
             get => _selectedGroup;
         }
@@ -60,9 +60,9 @@ namespace Groupr.Client.Groups
         private GroupViewModel _selectedGroup;
 
         /// <summary>
-        ///     Callback used for group interaction.
+        ///     GroupsCallback used for group interaction.
         /// </summary>
-        private IGroupsListener Callback { get; }
+        private IGroupsListener GroupsCallback { get; }
 
         #endregion
 
@@ -100,6 +100,19 @@ namespace Groupr.Client.Groups
                 Groups.Remove(SelectedGroup);
                 SelectedGroup = null;
             }
+        });
+
+        /// <summary>
+        /// Command to pin the provided group to the taskbar.
+        /// </summary>
+        public RelayCommand<object> PinGroupCommand => new RelayCommand<object>(value =>
+        {
+            var group = value as GroupViewModel;
+
+            if(group != null && group.IsPinned)
+                TaskbarManager.PinGroup(group);
+            else
+                TaskbarManager.UnpinGroup(group);
         });
 
         #endregion

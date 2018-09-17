@@ -40,6 +40,5 @@ namespace Groupr.Client.Window
         /// </summary>
         /// <param name="group">Group that was selected.</param>
         public void GroupSelected(GroupViewModel group) => ChildManager = new ChildManager(group, this);
-
     }
 }

@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Xml.Serialization;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace Groupr.Core.ViewModels
 {
@@ -13,7 +14,6 @@ namespace Groupr.Core.ViewModels
     /// </summary>
     public class GroupViewModel: ViewModelBase
     {
-
         #region Variables
 
         /// <summary>
@@ -29,6 +29,12 @@ namespace Groupr.Core.ViewModels
         public Bitmap Image { get; set; }
 
         /// <summary>
+        /// Indicates if the group is pinned to the taskbar.
+        /// </summary>
+        [XmlElement("IsPinned")]
+        public bool IsPinned { get; set; }
+
+        /// <summary>
         /// Unique identifier of the group.
         /// </summary>
         [XmlElement("Uid")]
@@ -41,6 +47,9 @@ namespace Groupr.Core.ViewModels
         public ObservableCollection<ChildViewModel> Children { get; } =
             new ObservableCollection<ChildViewModel>();
 
+        /// <summary>
+        /// Serialized version of the assigned image.
+        /// </summary>
         [XmlElement("LargeIcon")]
         public byte[] ImageSerialized
         {

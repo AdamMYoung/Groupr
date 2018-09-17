@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groupr.Core", "Groupr.Core\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groupr.IO", "Groupr.IO\Groupr.IO.csproj", "{F3D85117-BC10-4981-81A1-C29EAD5FE017}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groupr.Popup", "Groupr.Popup\Groupr.Popup.csproj", "{A58E4487-1EF7-4750-A613-6453FF87A5D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F3D85117-BC10-4981-81A1-C29EAD5FE017}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3D85117-BC10-4981-81A1-C29EAD5FE017}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3D85117-BC10-4981-81A1-C29EAD5FE017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A58E4487-1EF7-4750-A613-6453FF87A5D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A58E4487-1EF7-4750-A613-6453FF87A5D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A58E4487-1EF7-4750-A613-6453FF87A5D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A58E4487-1EF7-4750-A613-6453FF87A5D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

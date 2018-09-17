@@ -23,11 +23,6 @@ namespace Groupr.IO
         private static readonly string GroupsFile = Path.Combine(GroupsPath, "SavedGroups.xml");
 
         /// <summary>
-        /// Stored list of groups.
-        /// </summary>
-        private static List<GroupViewModel> Groups { get; set; }
-
-        /// <summary>
         /// Initializes directories used by the FileManager.
         /// </summary>
         static FileManager()
@@ -66,6 +61,21 @@ namespace Groupr.IO
 
             writer.Serialize(file, groups);
             file.Close();
+        }
+
+        /// <summary>
+        /// Returns the created shortcut for the provided group, or creates one if it doesn't exist.
+        /// </summary>
+        /// <param name="group">Group to create a shortcut from.</param>
+        internal static string GetGroupShortcut(GroupViewModel group)
+        {
+            var appDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            var shortcutPath = Path.Combine(appDirectory, @"Shortcuts\");
+
+            Directory.CreateDirectory(shortcutPath);
+
+
+            return shortcutPath;
         }
     }
 }

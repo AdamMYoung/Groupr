@@ -16,14 +16,14 @@ namespace Groupr.Client.Children
         ///     Instantiates a new ChildManager.
         /// </summary>
         /// <param name="group">Group to manage.</param>
-        /// <param name="callback">Child change callback.</param>
-        public ChildManager(GroupViewModel group, IChildListener callback)
+        /// <param name="childCallback">Callback to register child changes.</param>
+        public ChildManager(GroupViewModel group, IChildListener childCallback)
         {
             Group = group;
-            Callback = callback;
+            ChildCallback = childCallback;
     
             if(group != null)
-                Group.Children.CollectionChanged += (sender, args) => Callback.ChildValueChanged();
+                Group.Children.CollectionChanged += (sender, args) => ChildCallback.ChildValueChanged();
         }
 
         #region Variables
@@ -36,7 +36,7 @@ namespace Groupr.Client.Children
         /// <summary>
         ///     Callback to notify when values change.
         /// </summary>
-        private IChildListener Callback { get; }
+        private IChildListener ChildCallback { get; }
 
         /// <summary>
         ///     Currently selected child of the group.
