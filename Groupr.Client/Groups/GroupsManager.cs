@@ -26,21 +26,16 @@ namespace Groupr.Client.Groups
             {
                 foreach (var groupViewModel in Groups)
                 {
-                    groupViewModel.PropertyChanged += GroupValueChanged;
-                    groupViewModel.Children.CollectionChanged += GroupValueChanged;
+                    groupViewModel.PropertyChanged += (o, eventArgs) => SaveCurrentGroups();
+                    groupViewModel.Children.CollectionChanged += (o, eventArgs) => SaveCurrentGroups();
                 }
             };
         }
 
         /// <summary>
-        ///     Called when any element of a group view model changes, updating the XML file.
+        /// Saves the current group list to disk.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GroupValueChanged(object sender, object e)
-        {
-            FileManager.SaveGroups(new List<GroupViewModel>(Groups));
-        }
+        public void SaveCurrentGroups() => FileManager.SaveGroups(new List<GroupViewModel>(Groups));
 
         #region Variables
 
