@@ -14,7 +14,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         d:DataContext="{d:DesignInstance window:MainViewModel}"
-        Title="Groupr" Height="450" Width="800">
+        Title="Groupr" Height="550" Width="900">
     <Window.DataContext>
         <window:MainViewModel />
     </Window.DataContext>

@@ -17,7 +17,7 @@
         <DockPanel>
 
             <Image Width="50" Height="50" Source="{Binding Image}" />
-            <Button Content="Pin" DockPanel.Dock="Right" Margin="0,0,10,0" 
+            <Button Content="Build Folder" DockPanel.Dock="Right" Margin="0,0,10,0" 
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
                 Path=DataContext.GroupsManager.PinGroupCommand}" CommandParameter="{Binding}"/>
             <TextBlock Text="{Binding Name}" Margin="5,0,0,0" VerticalAlignment="Center" FontSize="16" />

@@ -94,8 +94,8 @@ namespace Groupr.IO
             var wsh = new WshShell();
             if (wsh.CreateShortcut(path + groupId + ".lnk") is IWshShortcut shortcut)
             {
-                shortcut.Arguments = "/GroupId " + groupId;
                 shortcut.TargetPath = shortcutAppPath;
+                shortcut.Arguments = "/GroupId " + groupId;
 
                 shortcut.Save();
             }
