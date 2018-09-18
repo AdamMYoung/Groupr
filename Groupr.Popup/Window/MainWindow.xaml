@@ -73,7 +73,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <materialDesign:Card Margin="3" Padding="5" Style="{StaticResource CardStyle1}"
-                                             Cursor="Hand" Width="80" Height="70">
+                                             Cursor="Hand" Width="80" Height="70" ToolTip="{Binding Name}">
                             <materialDesign:Card.InputBindings>
                                 <MouseBinding Gesture="LeftClick"
                                               Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, 
