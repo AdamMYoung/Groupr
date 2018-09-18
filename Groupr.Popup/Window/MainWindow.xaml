@@ -14,7 +14,8 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         d:DataContext="{d:DesignInstance viewModel:MainViewModel}"
-        Title="" Height="240" Width="260"
+        Title="" Height="240" Width="270"
+        AllowsTransparency="True"
         WindowStyle="None">
     <Window.Resources>
         <Style x:Key="CardStyle1" TargetType="{x:Type materialDesign:Card}">
@@ -45,7 +46,7 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="PART_ClipBorder" Property="Background" Value="#eeeeee" />
+                                <Setter TargetName="PART_ClipBorder" Property="Background" Value="#555555" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

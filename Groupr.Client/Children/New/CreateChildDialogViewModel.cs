@@ -24,7 +24,7 @@ namespace Groupr.Client.Children.New
         /// <summary>
         ///     Path of the child.
         /// </summary>
-        public string Path { get; private set; }
+        public string Path { get; private set; } = "C:\\";
 
         /// <summary>
         /// Image of the selected item's icon.
@@ -50,6 +50,9 @@ namespace Groupr.Client.Children.New
 
                     Image = Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, 
                         Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+
+                    if (Name == null)
+                        Name = dialog.SafeFileName;
                 }
             }
         });

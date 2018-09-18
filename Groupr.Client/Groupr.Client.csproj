@@ -94,6 +94,7 @@
       <DependentUpon>CreateGroupDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Children\New\CreateChildDialogViewModel.cs" />
+    <Compile Include="Groups\New\CreateGroupDialogViewModel.cs" />
     <Compile Include="Util\Confirmation\ConfirmDeleteDialog.xaml.cs">
       <DependentUpon>ConfirmDeleteDialog.xaml</DependentUpon>
     </Compile>
@@ -181,7 +182,6 @@
       <Name>Groupr.IO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.3.2.2\build\Fody.targets" Condition="Exists('..\packages\Fody.3.2.2\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

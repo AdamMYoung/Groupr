@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
+using Groupr.Core;
 using Groupr.Core.ViewModels;
 using IWshRuntimeLibrary;
 using File = System.IO.File;
@@ -97,9 +100,26 @@ namespace Groupr.IO
             {
                 shortcut.TargetPath = shortcutAppPath;
                 shortcut.Arguments = "/GroupId " + group.Uid;
+                shortcut.IconLocation = group.ImageLocation;
 
                 shortcut.Save();
             }
+        }
+
+        /// <summary>
+        /// Loads all folder icons into memory.
+        /// </summary>
+        public static IList<FolderIcon> LoadFolders()
+        {
+            var shortcutAppPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
+                @"..\..\Images\"));
+
+            return Directory.GetFiles(shortcutAppPath)
+                .Select(file => new FolderIcon
+                {
+                    Image = new BitmapImage(new Uri(file)),
+                    ImagePath = file
+                }).ToList();
         }
     }
 }

@@ -30,6 +30,11 @@ namespace Groupr.Core.ViewModels
         public BitmapSource Image { get; set; }
 
         /// <summary>
+        /// Location of the image for the group.
+        /// </summary>
+        public string ImageLocation { get; set; }
+
+        /// <summary>
         /// Indicates if the group is pinned to the taskbar.
         /// </summary>
         [XmlElement("IsPinned")]
@@ -51,10 +56,8 @@ namespace Groupr.Core.ViewModels
         /// Serialized version of the assigned image.
         /// </summary>
         [XmlElement("LargeIcon")]
-        public string ImageSerialized
-        {
-            get
-            {
+        public string ImageSerialized {
+            get {
                 if (Image == null)
                     return null;
 
@@ -67,16 +70,21 @@ namespace Groupr.Core.ViewModels
                     return Convert.ToBase64String(stream.ToArray());
                 }
             }
-            set
-            {
+            set {
                 if (value == null)
                     return;
 
-                byte[] bytes = Convert.FromBase64String(value);
-                using (var stream = new MemoryStream(bytes))
+                var stream = new MemoryStream(Convert.FromBase64String(value))
                 {
-                    Image = BitmapFrame.Create(stream);
-                }
+                    Position = 0
+                };
+
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = stream;
+                image.EndInit();
+
+                Image = image;
             }
         }
 

@@ -6,14 +6,19 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:viewModels="clr-namespace:Groupr.Core.ViewModels;assembly=Groupr.Core"
+             xmlns:new="clr-namespace:Groupr.Client.Groups.New"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
              TextElement.FontSize="14"
              FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance viewModels:GroupViewModel}"
+             d:DataContext="{d:DesignInstance new:CreateGroupDialogViewModel}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary
+            Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+    </UserControl.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -22,10 +27,18 @@
         </Grid.RowDefinitions>
 
         <!-- Title -->
-        <TextBlock Text="Create Group" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
+        <TextBlock Text="Create Group" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
 
         <!-- Form Inputs -->
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <ComboBox Width="60" Height="60" Margin="0,5,0,0" ItemsSource="{Binding Images}"
+                      SelectedItem="{Binding SelectedImage}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding Image}" Width="40" Height="40" HorizontalAlignment="Center"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBox materialDesign:HintAssist.Hint="Group Name" Text="{Binding Name}" Width="300" Margin="0,10" />
         </StackPanel>
 

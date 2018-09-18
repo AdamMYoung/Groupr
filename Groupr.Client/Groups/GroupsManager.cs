@@ -24,11 +24,13 @@ namespace Groupr.Client.Groups
 
             Groups.CollectionChanged += (sender, args) =>
             {
+                SaveCurrentGroups();
                 foreach (var groupViewModel in Groups)
                 {
                     groupViewModel.PropertyChanged += (o, eventArgs) => SaveCurrentGroups();
                     groupViewModel.Children.CollectionChanged += (o, eventArgs) => SaveCurrentGroups();
                 }
+                
             };
         }
 
@@ -73,7 +75,7 @@ namespace Groupr.Client.Groups
         /// </summary>
         public RelayCommand CreateGroupCommand => new RelayCommand(async () =>
         {
-            var viewModel = new GroupViewModel();
+            var viewModel = new CreateGroupDialogViewModel();
             var view = new CreateGroupDialog
             {
                 DataContext = viewModel
@@ -81,7 +83,7 @@ namespace Groupr.Client.Groups
 
             var result = await DialogHost.Show(view, "MainWindow", null, null);
             if ((bool?) result == true)
-                Groups.Add(viewModel);
+                Groups.Add(viewModel.BuildGroupViewModel());
         });
 
         /// <summary>

@@ -20,6 +20,7 @@ namespace Groupr.Popup.Window
             this.Loaded += OnLoaded;
         }
 
+
         /// <summary>
         /// Called when the window has loaded.
         /// </summary>
