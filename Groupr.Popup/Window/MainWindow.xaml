@@ -5,10 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Groupr.Popup"
         xmlns:viewModel="clr-namespace:Groupr.Popup.ViewModel"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:conv="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
         mc:Ignorable="d"
-        Title="" Height="200" Width="200">
-    <Window.DataContext>
-        <viewModel:MainViewModel />
-    </Window.DataContext>
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        d:DataContext="{d:DesignInstance viewModel:MainViewModel}"
+        Title="" Height="240" Width="260"
+        WindowStyle="None">
+    <Window.Resources>
+        <Style x:Key="CardStyle1" TargetType="{x:Type materialDesign:Card}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type materialDesign:Card}">
+                        <Grid Margin="{TemplateBinding Margin}" Background="Transparent">
+                            <AdornerDecorator>
+                                <AdornerDecorator.CacheMode>
+                                    <BitmapCache EnableClearType="True" SnapsToDevicePixels="True"/>
+                                </AdornerDecorator.CacheMode>
+                                <Border Effect="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(materialDesign:ShadowAssist.ShadowDepth), Converter={x:Static conv:ShadowConverter.Instance}}"
+                    CornerRadius="{TemplateBinding UniformCornerRadius}">
+                                    <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
+                        x:Name="PART_ClipBorder"
+                        Clip="{TemplateBinding ContentClip}" />
+                                </Border>
+                            </AdornerDecorator>
+                            <ContentPresenter 
+            x:Name="ContentPresenter"                    
+            Margin="{TemplateBinding Padding}"
+            Clip="{TemplateBinding ContentClip}"
+            Content="{TemplateBinding ContentControl.Content}" 
+            ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}" 
+            ContentTemplateSelector="{TemplateBinding ContentControl.ContentTemplateSelector}" 
+            ContentStringFormat="{TemplateBinding ContentControl.ContentStringFormat}">
+                            </ContentPresenter>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="PART_ClipBorder" Property="Background" Value="#eeeeee" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <ItemsControl ItemsSource="{Binding Group.Children, Mode=OneWay}" HorizontalAlignment="Center">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <materialDesign:Card Margin="3" Padding="5" Style="{StaticResource CardStyle1}"
+                                         Cursor="Hand" Width="80" Height="80">
+                        <materialDesign:Card.InputBindings>
+                            <MouseBinding Gesture="LeftClick" 
+                                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, 
+                                Path=DataContext.OpenApplicationCommand}" CommandParameter="{Binding}"/>
+                        </materialDesign:Card.InputBindings>
+                        <StackPanel Orientation="Vertical">
+                            <Image Width="40" Height="40" Source="{Binding Image}"/>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontSize="12"
+                                           TextAlignment="Center" Margin="0,5,0,0" TextTrimming="CharacterEllipsis"/>
+
+                        </StackPanel>
+                    </materialDesign:Card>
+
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
 
 </Window>

@@ -15,7 +15,6 @@
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <window:MainViewModel x:Key="MainViewModel" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -71,9 +71,9 @@ namespace Groupr.IO
         /// <param name="group">Group to create a shortcut from.</param>
         internal static string GetGroupShortcut(GroupViewModel group)
         {
-            var appDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            var folderPath = Path.Combine(appDirectory, @"Shortcuts\");
-            var shortcutPath = Path.Combine(folderPath, group.Uid + ".lnk");
+            var appDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var folderPath = Path.Combine(appDirectory, @"Groupr\Shortcuts\");
+            var shortcutPath = Path.Combine(folderPath, group.Name + " " + DateTime.Now.ToString($"yyyy-MM-dd") + ".lnk");
 
             Directory.CreateDirectory(folderPath);
             if (!File.Exists(shortcutPath))
@@ -85,14 +85,12 @@ namespace Groupr.IO
         /// <summary>
         /// Creates a shortcut, using the groupId as the name and arguments to pass to the popup window.
         /// </summary>
-        /// <param name="groupId">ID of the group to create.</param>
-        /// <param name="path">Location to create the shortcut.></param>
-        private static void CreateGroupShortcut(GroupViewModel group, string path)
+        /// <param name="group">Group to create.</param>
+        /// <param name="shortcutPath">Location to create the shortcut.></param>
+        private static void CreateGroupShortcut(GroupViewModel group, string shortcutPath)
         {   
             var shortcutAppPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
                 @"..\..\..\Groupr.Popup\bin\Debug\Groupr.Popup.exe"));
-
-            var shortcutPath = path + group.Name + " " + DateTime.Now.ToShortDateString() + ".lnk";
 
             var wsh = new WshShell();
             if (wsh.CreateShortcut(shortcutPath) is IWshShortcut shortcut)
