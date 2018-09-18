@@ -1,5 +1,5 @@
 # Groupr
-Application to create sub-folders for the taskbar.
+Application to create folders/groups for the taskbar.
 
 # Client
 The client is used to create folders, and to add applications/files to them.
