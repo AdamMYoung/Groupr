@@ -14,7 +14,7 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         d:DataContext="{d:DesignInstance viewModel:MainViewModel}"
-        Title="" Height="240" Width="270"
+        Title="" Height="240" Width="280"
         AllowsTransparency="True"
         WindowStyle="None">
     <Window.Resources>
@@ -55,32 +55,34 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <ItemsControl ItemsSource="{Binding Group.Children, Mode=OneWay}" HorizontalAlignment="Center">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <materialDesign:Card Margin="3" Padding="5" Style="{StaticResource CardStyle1}"
-                                         Cursor="Hand" Width="80" Height="80">
-                        <materialDesign:Card.InputBindings>
-                            <MouseBinding Gesture="LeftClick" 
-                                          Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, 
-                                Path=DataContext.OpenApplicationCommand}" CommandParameter="{Binding}"/>
-                        </materialDesign:Card.InputBindings>
-                        <StackPanel Orientation="Vertical">
-                            <Image Width="40" Height="40" Source="{Binding Image}"/>
-                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontSize="12"
-                                           TextAlignment="Center" Margin="0,5,0,0" TextTrimming="CharacterEllipsis"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Group.Children, Mode=OneWay}" HorizontalAlignment="Center">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <materialDesign:Card Margin="3" Padding="5" Style="{StaticResource CardStyle1}"
+                                             Cursor="Hand" Width="80" Height="80">
+                            <materialDesign:Card.InputBindings>
+                                <MouseBinding Gesture="LeftClick" 
+                                              Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, 
+                                    Path=DataContext.OpenApplicationCommand}" CommandParameter="{Binding}"/>
+                            </materialDesign:Card.InputBindings>
+                            <StackPanel Orientation="Vertical">
+                                <Image Width="40" Height="40" Source="{Binding Image}"/>
+                                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontSize="12"
+                                               TextAlignment="Center" Margin="0,5,0,0" TextTrimming="CharacterEllipsis"/>
 
-                        </StackPanel>
-                    </materialDesign:Card>
+                            </StackPanel>
+                        </materialDesign:Card>
 
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 
 </Window>
