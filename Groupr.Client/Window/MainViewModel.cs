@@ -27,7 +27,7 @@ namespace Groupr.Client.Window
         /// <summary>
         ///     Manager for children of a specific group.
         /// </summary>
-        public ChildManager ChildManager { get; private set; }
+        public ChildManager ChildManager { get; private set; } = new ChildManager(null, null);
 
         /// <summary>
         ///     Called when the children of a group has been changed, to commit the change to disk.

@@ -7,6 +7,7 @@
              xmlns:client="clr-namespace:Groupr.Client"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:window="clr-namespace:Groupr.Client.Window"
+             xmlns:util="clr-namespace:Groupr.Client.Util"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
@@ -24,7 +25,8 @@
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="New Group" Margin="5" Command="{Binding GroupsManager.CreateGroupCommand}" />
-            <Button Content="Delete Group" Margin="5" Command="{Binding GroupsManager.DeleteGroupCommand}" />
+            <Button Content="Delete Group" Margin="5" Command="{Binding GroupsManager.DeleteGroupCommand}" 
+                    IsEnabled="{Binding GroupsManager.SelectedGroup, Converter={x:Static util:NullToBoolConverter.Instance}}"/>
         </StackPanel>
 
         <!-- Group List -->

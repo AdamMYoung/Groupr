@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:window="clr-namespace:Groupr.Client.Window"
+             xmlns:util="clr-namespace:Groupr.Client.Util"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
@@ -19,8 +20,10 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="New Entry" Margin="5" Command="{Binding ChildManager.CreateEntryCommand}" />
-            <Button Content="Delete Entry" Margin="5" Command="{Binding ChildManager.DeleteEntryCommand}" />
+            <Button Content="New Entry" Margin="5" Command="{Binding ChildManager.CreateEntryCommand}" 
+                    IsEnabled="{Binding GroupsManager.SelectedGroup, Converter={x:Static util:NullToBoolConverter.Instance}}"/>
+            <Button Content="Delete Entry" Margin="5" Command="{Binding ChildManager.DeleteEntryCommand}" 
+                    IsEnabled="{Binding ChildManager.SelectedChild, Converter={x:Static util:NullToBoolConverter.Instance}}"/>
         </StackPanel>
 
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding ChildManager.Group.Children}"
