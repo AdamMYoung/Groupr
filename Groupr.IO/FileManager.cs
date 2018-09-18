@@ -92,8 +92,16 @@ namespace Groupr.IO
         /// <param name="shortcutPath">Location to create the shortcut.></param>
         private static void CreateGroupShortcut(GroupViewModel group, string shortcutPath)
         {
-            var shortcutAppPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
+        #if DEBUG
+             var shortcutAppPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
                 @"..\..\..\Groupr.Popup\bin\Debug\Groupr.Popup.exe"));
+        #endif
+
+        #if !DEBUG
+            var shortcutAppPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
+                @"..\..\..\Groupr.Popup\bin\Release\Groupr.Popup.exe"));
+        #endif
+
 
             var wsh = new WshShell();
             if (wsh.CreateShortcut(shortcutPath) is IWshShortcut shortcut)
