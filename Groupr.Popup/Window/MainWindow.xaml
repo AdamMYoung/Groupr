@@ -73,7 +73,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <materialDesign:Card Margin="3" Padding="5" Style="{StaticResource CardStyle1}"
-                                             Cursor="Hand" Width="80" Height="80">
+                                             Cursor="Hand" Width="80" Height="70">
                             <materialDesign:Card.InputBindings>
                                 <MouseBinding Gesture="LeftClick"
                                               Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, 
@@ -81,8 +81,8 @@
                                               CommandParameter="{Binding}" />
                             </materialDesign:Card.InputBindings>
                             <StackPanel Orientation="Vertical">
-                                <Image Width="40" Height="40" Source="{Binding Image}"
-                                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                <Image Width="32" Height="32" Source="{Binding Image}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       RenderOptions.BitmapScalingMode="Fant"
                                        RenderOptions.EdgeMode="Aliased"/>
                                 <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontSize="12"
                                            TextAlignment="Center" Margin="0,5,0,0" TextTrimming="CharacterEllipsis" />
