@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Groupr.Client.Children.New;
+using Groupr.Client.Util;
 using Groupr.Client.Util.Confirmation;
 using Groupr.Core.ViewModels;
 using MaterialDesignThemes.Wpf;
