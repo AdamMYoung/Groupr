@@ -1,6 +1,8 @@
 # Groupr
 Application to create sub-folders for the taskbar.
 
+[Download Here](https://github.com/AdamMYoung/Groupr/releases)
+
 # Client
 The client is used to create folders, and to add applications/files to them.
 
