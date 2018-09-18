@@ -49,8 +49,9 @@ namespace Groupr.Popup.Window
         {
             var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
             var mouse = transform.Transform(GetMousePosition());
+            var screen = Screen.FromPoint(new System.Drawing.Point((int)mouse.X, (int)mouse.Y));
             Left = mouse.X - ActualWidth / 2;
-            Top = SystemParameters.WorkArea.Height - 250;
+            Top = screen.WorkingArea.Bottom - ActualHeight - 1;
         }
 
         /// <summary>
