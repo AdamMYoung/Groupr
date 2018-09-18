@@ -16,12 +16,15 @@
     <materialDesign:Card>
         <DockPanel>
 
-            <Image Width="40" Height="40" Source="{Binding Image}" />
-            <Button Content="Build Folder" DockPanel.Dock="Right" Margin="0,0,5,0"
+            <Image Width="40" Height="40" Source="{Binding Image}" 
+                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                   RenderOptions.EdgeMode="Aliased"/>
+            <Button Content="Open" DockPanel.Dock="Right" Margin="0,0,5,0"
                     Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
                 Path=DataContext.GroupsManager.PinGroupCommand}"
                     CommandParameter="{Binding}" />
-            <TextBlock Text="{Binding Name}" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="14" TextTrimming="CharacterEllipsis"  />
+            <TextBlock Text="{Binding Name}" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="12" 
+                       TextTrimming="CharacterEllipsis"  />
 
         </DockPanel>
     </materialDesign:Card>
