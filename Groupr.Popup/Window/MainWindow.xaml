@@ -55,7 +55,14 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Group Title -->
+        <TextBlock HorizontalAlignment="Center" FontSize="16" Text="{Binding Group.Name}" Margin="0,5"/>
+        <!-- Selected Applications -->
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1">
             <ItemsControl ItemsSource="{Binding Group.Children, Mode=OneWay}" HorizontalAlignment="Center">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -65,10 +72,10 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <materialDesign:Card Margin="3" Padding="5" Style="{StaticResource CardStyle1}"
-                                             Cursor="Hand" Width="80" Height="80">
+                                                 Cursor="Hand" Width="80" Height="80">
                             <materialDesign:Card.InputBindings>
                                 <MouseBinding Gesture="LeftClick" 
-                                              Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, 
+                                                  Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}, 
                                     Path=DataContext.OpenApplicationCommand}" CommandParameter="{Binding}"/>
                             </materialDesign:Card.InputBindings>
                             <StackPanel Orientation="Vertical">
