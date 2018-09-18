@@ -61,11 +61,17 @@ namespace Groupr.Core.ViewModels
                 if (value == null)
                     return;
 
-                byte[] bytes = Convert.FromBase64String(value);
-                using (var stream = new MemoryStream(bytes))
+                var stream = new MemoryStream(Convert.FromBase64String(value))
                 {
-                    Image = BitmapFrame.Create(stream);
-                }
+                    Position = 0
+                };
+
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.StreamSource = stream;
+                image.EndInit();
+
+                Image = image;
             }
         }
     }

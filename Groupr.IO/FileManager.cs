@@ -77,7 +77,7 @@ namespace Groupr.IO
 
             Directory.CreateDirectory(folderPath);
             if (!File.Exists(shortcutPath))
-                CreateGroupShortcut(group.Uid, shortcutPath);
+                CreateGroupShortcut(group, shortcutPath);
 
             return folderPath;
         }
@@ -86,16 +86,19 @@ namespace Groupr.IO
         /// Creates a shortcut, using the groupId as the name and arguments to pass to the popup window.
         /// </summary>
         /// <param name="groupId">ID of the group to create.</param>
-        private static void CreateGroupShortcut(string groupId, string path)
+        /// <param name="path">Location to create the shortcut.></param>
+        private static void CreateGroupShortcut(GroupViewModel group, string path)
         {   
             var shortcutAppPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
                 @"..\..\..\Groupr.Popup\bin\Debug\Groupr.Popup.exe"));
 
+            var shortcutPath = path + group.Name + " " + DateTime.Now.ToShortDateString() + ".lnk";
+
             var wsh = new WshShell();
-            if (wsh.CreateShortcut(path + groupId + ".lnk") is IWshShortcut shortcut)
+            if (wsh.CreateShortcut(shortcutPath) is IWshShortcut shortcut)
             {
                 shortcut.TargetPath = shortcutAppPath;
-                shortcut.Arguments = "/GroupId " + groupId;
+                shortcut.Arguments = "/GroupId " + group.Uid;
 
                 shortcut.Save();
             }
