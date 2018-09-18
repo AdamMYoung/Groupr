@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using Groupr.Client.Children;
 using Groupr.Client.Groups;
@@ -33,12 +32,18 @@ namespace Groupr.Client.Window
         /// <summary>
         ///     Called when the children of a group has been changed, to commit the change to disk.
         /// </summary>
-        public void ChildValueChanged() => GroupsManager.SaveCurrentGroups();
+        public void ChildValueChanged()
+        {
+            GroupsManager.SaveCurrentGroups();
+        }
 
         /// <summary>
         ///     Called when a group has been selected by the user.
         /// </summary>
         /// <param name="group">Group that was selected.</param>
-        public void GroupSelected(GroupViewModel group) => ChildManager = new ChildManager(group, this);
+        public void GroupSelected(GroupViewModel group)
+        {
+            ChildManager = new ChildManager(group, this);
+        }
     }
 }

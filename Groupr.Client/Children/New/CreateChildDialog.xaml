@@ -32,7 +32,7 @@
 
         <!-- Form Inputs -->
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-            <Image Width="48" Height="48" Margin="0,5,0,0" Source="{Binding Image}"/>
+            <Image Width="48" Height="48" Margin="0,5,0,0" Source="{Binding Image}" />
             <DockPanel Width="300" Margin="0,10">
                 <Button Content="Select Path" Margin="10,0,0,0" DockPanel.Dock="Right"
                         Command="{Binding SelectPathCommand}" />

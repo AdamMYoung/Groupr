@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows;
 using System.Windows.Interop;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -27,9 +26,9 @@ namespace Groupr.Client.Children.New
         public string Path { get; private set; } = "C:\\";
 
         /// <summary>
-        /// Image of the selected item's icon.
+        ///     Image of the selected item's icon.
         /// </summary>
-        public BitmapSource Image { get; private set; } 
+        public BitmapSource Image { get; private set; }
 
         /// <summary>
         ///     Command to open a path selection dialog.
@@ -48,7 +47,7 @@ namespace Groupr.Client.Children.New
                     var bitmap = icon.ToBitmap();
                     var hBitmap = bitmap.GetHbitmap();
 
-                    Image = Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, 
+                    Image = Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero,
                         Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
 
                     if (Name == null)
@@ -56,7 +55,7 @@ namespace Groupr.Client.Children.New
                 }
             }
         });
-        
+
         /// <summary>
         ///     Builds a ChildViewModel from the stored data.
         /// </summary>
@@ -67,7 +66,7 @@ namespace Groupr.Client.Children.New
             {
                 Name = Name,
                 Path = Path,
-                Image =  Image
+                Image = Image
             };
         }
     }

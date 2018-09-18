@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using GalaSoft.MvvmLight;
@@ -10,38 +7,40 @@ using GalaSoft.MvvmLight;
 namespace Groupr.Core.ViewModels
 {
     /// <summary>
-    /// View model representing the child of a group (applications/files/folders).
+    ///     View model representing the child of a group (applications/files/folders).
     /// </summary>
-    public class ChildViewModel: ViewModelBase
+    public class ChildViewModel : ViewModelBase
     {
         /// <summary>
-        /// Name of the child.
+        ///     Name of the child.
         /// </summary>
         [XmlElement("Name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Path to the item to launch.
+        ///     Path to the item to launch.
         /// </summary>
         [XmlElement("Path")]
         public string Path { get; set; }
+
         /// <summary>
-        /// Image of the group.
+        ///     Image of the group.
         /// </summary>
         [XmlIgnore]
         public BitmapSource Image { get; set; }
 
         /// <summary>
-        /// Unique identifier of the child.
+        ///     Unique identifier of the child.
         /// </summary>
         [XmlElement("Uid")]
         public string Uid { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Serialized version of the assigned image.
+        ///     Serialized version of the assigned image.
         /// </summary>
         [XmlElement("LargeIcon")]
-        public string ImageSerialized {
+        public string ImageSerialized
+        {
             get
             {
                 if (Image == null)
@@ -66,7 +65,7 @@ namespace Groupr.Core.ViewModels
                     Position = 0
                 };
 
-                BitmapImage image = new BitmapImage();
+                var image = new BitmapImage();
                 image.BeginInit();
                 image.StreamSource = stream;
                 image.EndInit();

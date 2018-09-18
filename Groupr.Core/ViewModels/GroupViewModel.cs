@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using GalaSoft.MvvmLight;
@@ -11,53 +8,55 @@ using GalaSoft.MvvmLight;
 namespace Groupr.Core.ViewModels
 {
     /// <summary>
-    /// View model representing a group.
+    ///     View model representing a group.
     /// </summary>
-    public class GroupViewModel: ViewModelBase
+    public class GroupViewModel : ViewModelBase
     {
         #region Variables
 
         /// <summary>
-        /// Name of the group.
+        ///     Name of the group.
         /// </summary>
         [XmlElement("Name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Image of the group.
+        ///     Image of the group.
         /// </summary>
         [XmlIgnore]
         public BitmapSource Image { get; set; }
 
         /// <summary>
-        /// Location of the image for the group.
+        ///     Location of the image for the group.
         /// </summary>
         public string ImageLocation { get; set; }
 
         /// <summary>
-        /// Indicates if the group is pinned to the taskbar.
+        ///     Indicates if the group is pinned to the taskbar.
         /// </summary>
         [XmlElement("IsPinned")]
         public bool IsPinned { get; set; }
 
         /// <summary>
-        /// Unique identifier of the group.
+        ///     Unique identifier of the group.
         /// </summary>
         [XmlElement("Uid")]
         public string Uid { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Collection of all children attached to the specified group.
+        ///     Collection of all children attached to the specified group.
         /// </summary>
         [XmlElement("Children")]
         public ObservableCollection<ChildViewModel> Children { get; } = new ObservableCollection<ChildViewModel>();
 
         /// <summary>
-        /// Serialized version of the assigned image.
+        ///     Serialized version of the assigned image.
         /// </summary>
         [XmlElement("LargeIcon")]
-        public string ImageSerialized {
-            get {
+        public string ImageSerialized
+        {
+            get
+            {
                 if (Image == null)
                     return null;
 
@@ -70,7 +69,8 @@ namespace Groupr.Core.ViewModels
                     return Convert.ToBase64String(stream.ToArray());
                 }
             }
-            set {
+            set
+            {
                 if (value == null)
                     return;
 
@@ -79,7 +79,7 @@ namespace Groupr.Core.ViewModels
                     Position = 0
                 };
 
-                BitmapImage image = new BitmapImage();
+                var image = new BitmapImage();
                 image.BeginInit();
                 image.StreamSource = stream;
                 image.EndInit();

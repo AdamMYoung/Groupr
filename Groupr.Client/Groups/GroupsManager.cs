@@ -30,14 +30,16 @@ namespace Groupr.Client.Groups
                     groupViewModel.PropertyChanged += (o, eventArgs) => SaveCurrentGroups();
                     groupViewModel.Children.CollectionChanged += (o, eventArgs) => SaveCurrentGroups();
                 }
-                
             };
         }
 
         /// <summary>
-        /// Saves the current group list to disk.
+        ///     Saves the current group list to disk.
         /// </summary>
-        public void SaveCurrentGroups() => FileManager.SaveGroups(new List<GroupViewModel>(Groups));
+        public void SaveCurrentGroups()
+        {
+            FileManager.SaveGroups(new List<GroupViewModel>(Groups));
+        }
 
         #region Variables
 
@@ -105,13 +107,13 @@ namespace Groupr.Client.Groups
         });
 
         /// <summary>
-        /// Command to pin the provided group to the taskbar.
+        ///     Command to pin the provided group to the taskbar.
         /// </summary>
         public RelayCommand<object> PinGroupCommand => new RelayCommand<object>(value =>
         {
             var group = value as GroupViewModel;
 
-            if(group != null && !group.IsPinned)
+            if (group != null && !group.IsPinned)
                 TaskbarManager.PinGroup(group);
             else
                 TaskbarManager.UnpinGroup(group);

@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
+﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
-using Groupr.Core;
 using Groupr.Core.ViewModels;
 using Groupr.IO;
 
 namespace Groupr.Client.Groups.New
 {
-    class CreateGroupDialogViewModel : ViewModelBase
+    internal class CreateGroupDialogViewModel : ViewModelBase
     {
         /// <summary>
-        /// Instantaites a new CreateGroupDialogViewModel.
+        ///     Instantaites a new CreateGroupDialogViewModel.
         /// </summary>
         public CreateGroupDialogViewModel()
         {
@@ -25,17 +17,17 @@ namespace Groupr.Client.Groups.New
         }
 
         /// <summary>
-        /// Name of the group.
+        ///     Name of the group.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Currently selected image.
+        ///     Currently selected image.
         /// </summary>
         public FolderIcon SelectedImage { get; set; }
 
         /// <summary>
-        /// Images to display to the user.
+        ///     Images to display to the user.
         /// </summary>
         public ObservableCollection<FolderIcon> Images { get; }
 

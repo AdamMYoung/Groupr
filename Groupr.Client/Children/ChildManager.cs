@@ -21,8 +21,8 @@ namespace Groupr.Client.Children
         {
             Group = group;
             ChildCallback = childCallback;
-    
-            if(group != null)
+
+            if (group != null)
                 Group.Children.CollectionChanged += (sender, args) => ChildCallback.ChildValueChanged();
         }
 

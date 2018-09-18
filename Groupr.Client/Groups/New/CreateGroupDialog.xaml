@@ -27,15 +27,16 @@
         </Grid.RowDefinitions>
 
         <!-- Title -->
-        <TextBlock Text="Create Group" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <TextBlock Text="Create Group" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
 
         <!-- Form Inputs -->
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
             <ComboBox Width="60" Height="60" Margin="0,5,0,0" ItemsSource="{Binding Images}"
-                      SelectedItem="{Binding SelectedImage}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                      SelectedItem="{Binding SelectedImage}" HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Center">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="{Binding Image}" Width="40" Height="40" HorizontalAlignment="Center"/>
+                        <Image Source="{Binding Image}" Width="40" Height="40" HorizontalAlignment="Center" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
