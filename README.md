@@ -9,6 +9,6 @@ The client is used to create folders, and to add applications/files to them.
 ![Client](https://i.imgur.com/Ico8xol.png)
 
 # Popup
-Folders appear as popups above the cursor. This is a shortcut to an application that uses the ID of the folder specified to show relevant information.
+Folders appear as popups above the cursor. This used on the taskbar to provide an easy-to-use way of organising applications.
 
 ![Popup](https://i.imgur.com/7UVRECb.png)
