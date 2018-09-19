@@ -81,6 +81,33 @@ namespace Groupr.Client.Children
             }
         });
 
+        /// <summary>
+        ///     Edits the currently selected child.
+        /// </summary>
+        public RelayCommand EditEntryCommand => new RelayCommand(async () =>
+        {
+            if (SelectedChild == null)
+                return;
+
+            var viewModel = new CreateChildDialogViewModel(SelectedChild);
+            var view = new CreateChildDialog
+            {
+                DataContext = viewModel
+            };
+
+            var result = await DialogHost.Show(view, "MainWindow", null, null);
+
+            if ((bool?)result == true)
+            {
+                var index = Group.Children.IndexOf(SelectedChild);
+                var updatedChild = viewModel.BuildChildViewModel();
+
+                Group.Children.Remove(SelectedChild);
+                Group.Children.Insert(index, updatedChild);
+                SelectedChild = updatedChild;
+            }
+        });
+
         #endregion
     }
 

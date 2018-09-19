@@ -27,8 +27,21 @@
         </StackPanel>
 
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding ChildManager.Group.Children}"
-                  SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False"
+                  SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
                   SelectedItem="{Binding ChildManager.SelectedChild}">
+            <DataGrid.InputBindings>
+                <MouseBinding
+                    MouseAction="LeftDoubleClick"
+                    Command="{Binding ChildManager.EditEntryCommand}"/>    
+            </DataGrid.InputBindings>
+            <DataGrid.Resources>
+                
+                <!-- Override selection stype to highlight row instead of cells -->
+                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
 
                 <DataGridTemplateColumn>

@@ -113,11 +113,29 @@ namespace Groupr.Client.Groups
         public RelayCommand<object> PinGroupCommand => new RelayCommand<object>(value =>
         {
             var group = value as GroupViewModel;
+            TaskbarManager.PinGroup(group);
+        });
 
-            if (group != null && !group.IsPinned)
-                TaskbarManager.PinGroup(group);
-            else
-                TaskbarManager.UnpinGroup(group);
+        /// <summary>
+        ///     Command to edit the provided group.
+        /// </summary>
+        public RelayCommand<object> EditGroupCommand => new RelayCommand<object>(async value =>
+        {
+            var group = value as GroupViewModel;
+
+            var viewModel = new CreateGroupDialogViewModel(group);
+            var view = new CreateGroupDialog
+            {
+                DataContext = viewModel
+            };
+
+            var result = await DialogHost.Show(view, "MainWindow", null, null);
+            if ((bool?)result == true)
+            {
+                var index = Groups.IndexOf(group);
+                Groups.Remove(group);
+                Groups.Insert(index, viewModel.BuildGroupViewModel());
+            }
         });
 
         #endregion

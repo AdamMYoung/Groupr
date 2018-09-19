@@ -16,6 +16,34 @@ namespace Groupr.Client.Children.New
     internal class CreateChildDialogViewModel : ViewModelBase
     {
         /// <summary>
+        /// Instantiates a new CreateChildDialogViewModel.
+        /// </summary>
+        public CreateChildDialogViewModel() { }
+
+        /// <summary>
+        /// Instantiates a new CreateChildDialogViewModel used to edit the passed child.
+        /// </summary>
+        /// <param name="child"></param>
+        public CreateChildDialogViewModel(ChildViewModel child)
+        {
+            WindowTitle = "Edit Application";
+            Uid = child.Uid;
+            Name = child.Name;
+            Path = child.Path;
+            Image = child.Image;
+        }
+
+        /// <summary>
+        /// Title of the window.
+        /// </summary>
+        public string WindowTitle { get; } = "Add Applicaton";
+
+        /// <summary>
+        /// Uid of the child.
+        /// </summary>
+        private string Uid { get; }
+
+        /// <summary>
         ///     Name of the child.
         /// </summary>
         public string Name { get; set; }
@@ -23,7 +51,7 @@ namespace Groupr.Client.Children.New
         /// <summary>
         ///     Path of the child.
         /// </summary>
-        public string Path { get; private set; } = "C:\\";
+        public string Path { get; private set; } = "C:/";
 
         /// <summary>
         ///     Image of the selected item's icon.
@@ -62,12 +90,17 @@ namespace Groupr.Client.Children.New
         /// <returns></returns>
         public ChildViewModel BuildChildViewModel()
         {
-            return new ChildViewModel
+            var child =  new ChildViewModel
             {
                 Name = Name,
                 Path = Path,
                 Image = Image
             };
+
+            if (Uid != null)
+                child.Uid = Uid;
+
+            return child;
         }
     }
 }

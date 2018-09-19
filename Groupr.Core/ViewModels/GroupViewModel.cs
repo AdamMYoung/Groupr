@@ -32,12 +32,6 @@ namespace Groupr.Core.ViewModels
         public string ImageLocation { get; set; }
 
         /// <summary>
-        ///     Indicates if the group is pinned to the taskbar.
-        /// </summary>
-        [XmlElement("IsPinned")]
-        public bool IsPinned { get; set; }
-
-        /// <summary>
         ///     Unique identifier of the group.
         /// </summary>
         [XmlElement("Uid")]

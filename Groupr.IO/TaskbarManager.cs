@@ -17,14 +17,5 @@ namespace Groupr.IO
             var shortcutPath = FileManager.GetGroupShortcut(group);
             Process.Start(shortcutPath);
         }
-
-        /// <summary>
-        ///     Unpins the passed group from the taskbar, if possible.
-        /// </summary>
-        /// <param name="group">Group to unpin from the taskbar.</param>
-        public static void UnpinGroup(GroupViewModel group)
-        {
-            var shortcutPath = FileManager.GetGroupShortcut(group);
-        }
     }
 }

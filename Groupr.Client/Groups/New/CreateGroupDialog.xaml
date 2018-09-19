@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <!-- Title -->
-        <TextBlock Text="Create Group" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
+        <TextBlock Text="{Binding WindowTitle}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
 
         <!-- Form Inputs -->
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">

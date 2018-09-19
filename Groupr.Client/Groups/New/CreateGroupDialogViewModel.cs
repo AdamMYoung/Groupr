@@ -17,6 +17,26 @@ namespace Groupr.Client.Groups.New
         }
 
         /// <summary>
+        ///     Instantaites a new CreateGroupDialogViewModel used to edit the passed group.
+        /// </summary>
+        public CreateGroupDialogViewModel(GroupViewModel group) : this()
+        {
+            WindowTitle = "Edit Group";
+            Uid = group.Uid;
+            Name = group.Name;
+        }
+
+        /// <summary>
+        /// Title of the window.
+        /// </summary>
+        public string WindowTitle { get; } = "Add Group";
+
+        /// <summary>
+        /// Uid of the group.
+        /// </summary>
+        private string Uid { get; }
+    
+        /// <summary>
         ///     Name of the group.
         /// </summary>
         public string Name { get; set; }
@@ -37,12 +57,17 @@ namespace Groupr.Client.Groups.New
         /// <returns></returns>
         public GroupViewModel BuildGroupViewModel()
         {
-            return new GroupViewModel
+            var group = new GroupViewModel
             {
                 Name = Name,
                 Image = SelectedImage.Image,
                 ImageLocation = SelectedImage.ImagePath
             };
+
+            if (Uid != null)
+                group.Uid = Uid;
+
+            return group;
         }
     }
 }
