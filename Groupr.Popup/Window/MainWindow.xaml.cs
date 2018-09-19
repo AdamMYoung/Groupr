@@ -10,6 +10,11 @@ namespace Groupr.Popup.Window
     public partial class MainWindow : System.Windows.Window
     {
         /// <summary>
+        /// View model of the application.
+        /// </summary>
+        private MainViewModel ViewModel { get; set; }
+
+        /// <summary>
         ///     Instantiates the MainWindow.
         /// </summary>
         public MainWindow()
@@ -25,9 +30,9 @@ namespace Groupr.Popup.Window
         /// <param name="e"></param>
         private void OnLoaded(object sender, object e)
         {
-            var viewModel = new MainViewModel();
-            viewModel.RequestClose += Close;
-            DataContext = viewModel;
+            ViewModel = new MainViewModel();
+            ViewModel.RequestClose += Close;
+            DataContext = ViewModel;
 
             MoveWindowToCursor();
         }
@@ -39,7 +44,9 @@ namespace Groupr.Popup.Window
         protected override void OnDeactivated(EventArgs e)
         {
             base.OnDeactivated(e);
-            Close();
+
+            if(ViewModel.CanClose)
+                Close();
         }
 
         /// <summary>

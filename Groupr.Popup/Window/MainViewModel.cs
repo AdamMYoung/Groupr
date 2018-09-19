@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Groupr.Core.ViewModels;
 using Groupr.IO;
+using Groupr.Popup.Util;
+using MaterialDesignThemes.Wpf;
 
 namespace Groupr.Popup.Window
 {
@@ -33,6 +36,11 @@ namespace Groupr.Popup.Window
         /// </summary>
         private void LoadGroup()
         {
+        #if (DEBUG)
+            Group = FileManager.LoadGroups().First();
+        #endif
+
+        #if (!DEBUG)
             var args = Environment.GetCommandLineArgs();
             var dictionary = new Dictionary<string, string>();
 
@@ -40,17 +48,45 @@ namespace Groupr.Popup.Window
 
             if (dictionary.TryGetValue("/GroupId", out var value))
                 Group = FileManager.LoadGroups().FirstOrDefault(x => x.Uid == value);
+            #endif
         }
 
-        #region Commands
+#region Commands
 
         /// <summary>
         ///     Command to open the provided application.
         /// </summary>
-        public RelayCommand<object> OpenApplicationCommand => new RelayCommand<object>(value =>
+        public RelayCommand<object> OpenApplicationCommand => new RelayCommand<object>(async value =>
         {
             var child = (ChildViewModel) value;
-            Process.Start(child.Path);
+
+            if(File.Exists(child.Path))
+                Process.Start(child.Path);
+            else
+            {
+                CanClose = false;
+
+                var viewModel = new InvalidPathDialogViewModel(child);
+                var view = new InvalidPathDialog
+                {
+                    DataContext = viewModel
+                };
+
+                var result = await DialogHost.Show(view, "MainWindow", null, null);
+                if((bool)result == true)
+                {
+                    var allGroups = FileManager.LoadGroups() as List<GroupViewModel>;
+                    var oldGroup = allGroups.FirstOrDefault(x => x.Children.Any(c => c.Uid == child.Uid));
+
+                    oldGroup.Children.FirstOrDefault(x => x.Uid == child.Uid).Path = viewModel.Path;
+                    FileManager.SaveGroups(allGroups);
+
+                    Process.Start(viewModel.Path);
+                }
+
+                CanClose = true;
+            }
+
             RequestClose?.Invoke();
         });
 
@@ -59,6 +95,11 @@ namespace Groupr.Popup.Window
         /// </summary>
         public event Action RequestClose;
 
-        #endregion
+        /// <summary>
+        /// Indicates if the window is allowed to close;
+        /// </summary>
+        public bool CanClose { get; private set; } = true;
+
+#endregion
     }
 }
