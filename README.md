@@ -14,9 +14,11 @@ Once a group has been created, simply click "Open", and pin the generated shortc
 ![Client](https://i.imgur.com/Ico8xol.png)
 
 # Popup
+Folders appear as popups above the cursor. This used on the taskbar to provide an easy-to-use way of organising applications.
+
 ## Features
 - Application file path validation
 - Windows 10 styling.
-Folders appear as popups above the cursor. This used on the taskbar to provide an easy-to-use way of organising applications.
+
 
 ![Popup](https://i.imgur.com/7UVRECb.png)
