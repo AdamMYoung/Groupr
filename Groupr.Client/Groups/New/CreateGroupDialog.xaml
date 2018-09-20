@@ -36,9 +36,9 @@
                       VerticalContentAlignment="Center">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <Image Source="{Binding Image}" Width="40" Height="40" HorizontalAlignment="Center" 
+                        <Image Source="{Binding Image}" Width="40" Height="40" HorizontalAlignment="Center"
                                RenderOptions.BitmapScalingMode="NearestNeighbor"
-                               RenderOptions.EdgeMode="Aliased"/>
+                               RenderOptions.EdgeMode="Aliased" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>

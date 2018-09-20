@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace Groupr.Client.Util
 {
     /// <summary>
-    /// Converts a null check into a boolean value. True if not null, false if null.
+    ///     Converts a null check into a boolean value. True if not null, false if null.
     /// </summary>
-    class NullToBoolConverter: IValueConverter
+    internal class NullToBoolConverter : IValueConverter
     {
         /// <summary>
-        /// Instance of the converter.
+        ///     Instance of the converter.
         /// </summary>
         public static IValueConverter Instance = new NullToBoolConverter();
 
         /// <summary>
-        /// Converts a null check into a boolean value. True if not null, false if null.
+        ///     Converts a null check into a boolean value. True if not null, false if null.
         /// </summary>
         /// <param name="value"></param>
         /// <param name="targetType"></param>

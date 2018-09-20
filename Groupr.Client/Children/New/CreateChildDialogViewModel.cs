@@ -16,12 +16,14 @@ namespace Groupr.Client.Children.New
     internal class CreateChildDialogViewModel : ViewModelBase
     {
         /// <summary>
-        /// Instantiates a new CreateChildDialogViewModel.
+        ///     Instantiates a new CreateChildDialogViewModel.
         /// </summary>
-        public CreateChildDialogViewModel() { }
+        public CreateChildDialogViewModel()
+        {
+        }
 
         /// <summary>
-        /// Instantiates a new CreateChildDialogViewModel used to edit the passed child.
+        ///     Instantiates a new CreateChildDialogViewModel used to edit the passed child.
         /// </summary>
         /// <param name="child"></param>
         public CreateChildDialogViewModel(ChildViewModel child)
@@ -34,12 +36,12 @@ namespace Groupr.Client.Children.New
         }
 
         /// <summary>
-        /// Title of the window.
+        ///     Title of the window.
         /// </summary>
         public string WindowTitle { get; } = "Add Applicaton";
 
         /// <summary>
-        /// Uid of the child.
+        ///     Uid of the child.
         /// </summary>
         private string Uid { get; }
 
@@ -90,7 +92,7 @@ namespace Groupr.Client.Children.New
         /// <returns></returns>
         public ChildViewModel BuildChildViewModel()
         {
-            var child =  new ChildViewModel
+            var child = new ChildViewModel
             {
                 Name = Name,
                 Path = Path,

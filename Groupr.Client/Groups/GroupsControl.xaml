@@ -25,8 +25,8 @@
         <!-- Buttons -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="New Group" Margin="5" Command="{Binding GroupsManager.CreateGroupCommand}" />
-            <Button Content="Delete Group" Margin="5" Command="{Binding GroupsManager.DeleteGroupCommand}" 
-                    IsEnabled="{Binding GroupsManager.SelectedGroup, Converter={x:Static util:NullToBoolConverter.Instance}}"/>
+            <Button Content="Delete Group" Margin="5" Command="{Binding GroupsManager.DeleteGroupCommand}"
+                    IsEnabled="{Binding GroupsManager.SelectedGroup, Converter={x:Static util:NullToBoolConverter.Instance}}" />
         </StackPanel>
 
         <!-- Group List -->

@@ -10,11 +10,6 @@ namespace Groupr.Popup.Window
     public partial class MainWindow : System.Windows.Window
     {
         /// <summary>
-        /// View model of the application.
-        /// </summary>
-        private MainViewModel ViewModel { get; set; }
-
-        /// <summary>
         ///     Instantiates the MainWindow.
         /// </summary>
         public MainWindow()
@@ -22,6 +17,11 @@ namespace Groupr.Popup.Window
             InitializeComponent();
             Loaded += OnLoaded;
         }
+
+        /// <summary>
+        ///     View model of the application.
+        /// </summary>
+        private MainViewModel ViewModel { get; set; }
 
         /// <summary>
         ///     Called when the window has loaded.
@@ -45,7 +45,7 @@ namespace Groupr.Popup.Window
         {
             base.OnDeactivated(e);
 
-            if(ViewModel.CanClose)
+            if (ViewModel.CanClose)
                 Close();
         }
 
@@ -56,7 +56,7 @@ namespace Groupr.Popup.Window
         {
             var transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
             var mouse = transform.Transform(GetMousePosition());
-            var screen = Screen.FromPoint(new System.Drawing.Point((int)mouse.X, (int)mouse.Y));
+            var screen = Screen.FromPoint(new System.Drawing.Point((int) mouse.X, (int) mouse.Y));
             Left = mouse.X - ActualWidth / 2;
             Top = screen.WorkingArea.Bottom - ActualHeight - 1;
         }

@@ -27,15 +27,15 @@ namespace Groupr.Client.Groups.New
         }
 
         /// <summary>
-        /// Title of the window.
+        ///     Title of the window.
         /// </summary>
         public string WindowTitle { get; } = "Add Group";
 
         /// <summary>
-        /// Uid of the group.
+        ///     Uid of the group.
         /// </summary>
         private string Uid { get; }
-    
+
         /// <summary>
         ///     Name of the group.
         /// </summary>

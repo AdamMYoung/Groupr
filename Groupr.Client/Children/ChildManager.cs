@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Groupr.Client.Children.New;
-using Groupr.Client.Util;
 using Groupr.Client.Util.Confirmation;
 using Groupr.Core.ViewModels;
 using MaterialDesignThemes.Wpf;
@@ -97,7 +96,7 @@ namespace Groupr.Client.Children
 
             var result = await DialogHost.Show(view, "MainWindow", null, null);
 
-            if ((bool?)result == true)
+            if ((bool?) result == true)
             {
                 var index = Group.Children.IndexOf(SelectedChild);
                 var updatedChild = viewModel.BuildChildViewModel();

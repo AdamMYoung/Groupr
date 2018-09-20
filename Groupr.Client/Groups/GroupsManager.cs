@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Groupr.Client.Groups.New;
-using Groupr.Client.Util;
 using Groupr.Client.Util.Confirmation;
 using Groupr.Core.ViewModels;
 using Groupr.IO;
@@ -130,7 +129,7 @@ namespace Groupr.Client.Groups
             };
 
             var result = await DialogHost.Show(view, "MainWindow", null, null);
-            if ((bool?)result == true)
+            if ((bool?) result == true)
             {
                 var index = Groups.IndexOf(group);
                 Groups.Remove(group);

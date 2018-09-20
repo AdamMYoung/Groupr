@@ -15,8 +15,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         d:DataContext="{d:DesignInstance window:MainViewModel}"
         ResizeMode="CanMinimize"
-        Title="Groupr" Height="550" Width="1000"
-        >
+        Title="Groupr" Height="550" Width="1000">
     <Window.DataContext>
         <window:MainViewModel />
     </Window.DataContext>

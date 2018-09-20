@@ -1,12 +1,12 @@
 ﻿<UserControl x:Class="Groupr.Popup.Util.InvalidPathDialog"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Groupr.Popup.Util"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
              TextElement.FontWeight="Medium"
@@ -31,13 +31,13 @@
         <!-- Form Inputs -->
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
 
-            <TextBlock Text="Path not found. Please select a valid path." HorizontalAlignment="Center" Margin="0,10"/>
+            <TextBlock Text="Path not found. Please select a valid path." HorizontalAlignment="Center" Margin="0,10" />
 
             <DockPanel Width="300" Margin="0,10">
                 <Button Content="Select Path" Margin="10,0,0,0" DockPanel.Dock="Right"
                         Command="{Binding SelectPathCommand}" />
-                <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path}" 
-                           TextTrimming="CharacterEllipsis"/>
+                <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Text="{Binding Path}"
+                           TextTrimming="CharacterEllipsis" />
             </DockPanel>
         </StackPanel>
 

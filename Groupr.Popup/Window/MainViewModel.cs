@@ -36,11 +36,11 @@ namespace Groupr.Popup.Window
         /// </summary>
         private void LoadGroup()
         {
-        #if (DEBUG)
+#if (DEBUG)
             Group = FileManager.LoadGroups().First();
         #endif
 
-        #if (!DEBUG)
+#if (!DEBUG)
             var args = Environment.GetCommandLineArgs();
             var dictionary = new Dictionary<string, string>();
 
@@ -48,10 +48,10 @@ namespace Groupr.Popup.Window
 
             if (dictionary.TryGetValue("/GroupId", out var value))
                 Group = FileManager.LoadGroups().FirstOrDefault(x => x.Uid == value);
-            #endif
+#endif
         }
 
-#region Commands
+        #region Commands
 
         /// <summary>
         ///     Command to open the provided application.
@@ -60,8 +60,10 @@ namespace Groupr.Popup.Window
         {
             var child = (ChildViewModel) value;
 
-            if(File.Exists(child.Path))
+            if (File.Exists(child.Path))
+            {
                 Process.Start(child.Path);
+            }
             else
             {
                 CanClose = false;
@@ -73,7 +75,7 @@ namespace Groupr.Popup.Window
                 };
 
                 var result = await DialogHost.Show(view, "MainWindow", null, null);
-                if((bool)result == true)
+                if ((bool) result)
                 {
                     var allGroups = FileManager.LoadGroups() as List<GroupViewModel>;
                     var oldGroup = allGroups.FirstOrDefault(x => x.Children.Any(c => c.Uid == child.Uid));
@@ -96,10 +98,10 @@ namespace Groupr.Popup.Window
         public event Action RequestClose;
 
         /// <summary>
-        /// Indicates if the window is allowed to close;
+        ///     Indicates if the window is allowed to close;
         /// </summary>
         public bool CanClose { get; private set; } = true;
 
-#endregion
+        #endregion
     }
 }

@@ -82,9 +82,10 @@
                                                   CommandParameter="{Binding}" />
                                 </materialDesign:Card.InputBindings>
                                 <StackPanel Orientation="Vertical">
-                                    <Image Width="32" Height="32" Source="{Binding Image}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    <Image Width="32" Height="32" Source="{Binding Image}" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
                                            RenderOptions.BitmapScalingMode="Fant"
-                                           RenderOptions.EdgeMode="Aliased"/>
+                                           RenderOptions.EdgeMode="Aliased" />
                                     <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" FontSize="12"
                                                TextAlignment="Center" Margin="0,5,0,0" TextTrimming="CharacterEllipsis" />
 

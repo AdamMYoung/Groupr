@@ -20,22 +20,23 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="New Entry" Margin="5" Command="{Binding ChildManager.CreateEntryCommand}" 
-                    IsEnabled="{Binding GroupsManager.SelectedGroup, Converter={x:Static util:NullToBoolConverter.Instance}}"/>
-            <Button Content="Delete Entry" Margin="5" Command="{Binding ChildManager.DeleteEntryCommand}" 
-                    IsEnabled="{Binding ChildManager.SelectedChild, Converter={x:Static util:NullToBoolConverter.Instance}}"/>
+            <Button Content="New Entry" Margin="5" Command="{Binding ChildManager.CreateEntryCommand}"
+                    IsEnabled="{Binding GroupsManager.SelectedGroup, Converter={x:Static util:NullToBoolConverter.Instance}}" />
+            <Button Content="Delete Entry" Margin="5" Command="{Binding ChildManager.DeleteEntryCommand}"
+                    IsEnabled="{Binding ChildManager.SelectedChild, Converter={x:Static util:NullToBoolConverter.Instance}}" />
         </StackPanel>
 
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding ChildManager.Group.Children}"
-                  SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"
+                  SelectionMode="Single" SelectionUnit="FullRow" CanUserAddRows="False" CanUserDeleteRows="False"
+                  IsReadOnly="True"
                   SelectedItem="{Binding ChildManager.SelectedChild}">
             <DataGrid.InputBindings>
                 <MouseBinding
                     MouseAction="LeftDoubleClick"
-                    Command="{Binding ChildManager.EditEntryCommand}"/>    
+                    Command="{Binding ChildManager.EditEntryCommand}" />
             </DataGrid.InputBindings>
             <DataGrid.Resources>
-                
+
                 <!-- Override selection stype to highlight row instead of cells -->
                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource MaterialDesignDataGridCell}">
                     <Setter Property="BorderThickness" Value="0" />
