@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
 using Groupr.Core.ViewModels;
@@ -75,8 +76,12 @@ namespace Groupr.IO
         {
             var appDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             var folderPath = Path.Combine(appDirectory, @"Groupr\Shortcuts\");
-            var shortcutPath =
-                Path.Combine(folderPath, group.Name + " " + DateTime.Now.ToString($"yyyy-MM-dd") + ".lnk");
+
+            Regex illegalInFileName = new Regex(@"[\\/:*?""<>|]");
+            var fileName = group.Name + " " + DateTime.Now.ToString($"yyyy-MM-dd") + ".lnk";
+            var sanitizedFileName = illegalInFileName.Replace(fileName, "");
+
+            var shortcutPath = Path.Combine(folderPath, sanitizedFileName);
 
             Directory.CreateDirectory(folderPath);
             if (!File.Exists(shortcutPath))
@@ -95,14 +100,12 @@ namespace Groupr.IO
 #if DEBUG
              var shortcutAppPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
                 @"..\..\..\Groupr.Popup\bin\Debug\Groupr.Popup.exe"));
-        #endif
+#endif
 
 #if !DEBUG
             var shortcutAppPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
                 @"..\..\..\Groupr.Popup\bin\Release\Groupr.Popup.exe"));
 #endif
-
-
             var wsh = new WshShell();
             if (wsh.CreateShortcut(shortcutPath) is IWshShortcut shortcut)
             {
