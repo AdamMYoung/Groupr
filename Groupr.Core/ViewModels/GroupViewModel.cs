@@ -41,7 +41,7 @@ namespace Groupr.Core.ViewModels
         ///     Collection of all children attached to the specified group.
         /// </summary>
         [XmlElement("Children")]
-        public ObservableCollection<ChildViewModel> Children { get; } = new ObservableCollection<ChildViewModel>();
+        public ObservableCollection<ChildViewModel> Children { get; set; } = new ObservableCollection<ChildViewModel>();
 
         /// <summary>
         ///     Serialized version of the assigned image.

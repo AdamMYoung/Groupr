@@ -132,8 +132,11 @@ namespace Groupr.Client.Groups
             if ((bool?) result == true)
             {
                 var index = Groups.IndexOf(group);
+                var newGroup = viewModel.BuildGroupViewModel();
+
+                newGroup.Children = group?.Children;
                 Groups.Remove(group);
-                Groups.Insert(index, viewModel.BuildGroupViewModel());
+                Groups.Insert(index, newGroup);
             }
         });
 
