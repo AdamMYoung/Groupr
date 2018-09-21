@@ -1,5 +1,5 @@
 # Groupr
-Application to create folders/groups for the Windows taskbar. [Download Here](https://github.com/AdamMYoung/Groupr/releases). A help guide is available within the application.
+Application to create folders/groups for the Windows taskbar. A help guide is available within the application. Downloads are available from the [releases page](https://github.com/AdamMYoung/Groupr/releases).
 
 # Client
 The client is used for group/child creation, as well as shortcut generation.
