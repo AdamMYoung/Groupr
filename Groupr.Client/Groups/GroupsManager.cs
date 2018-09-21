@@ -91,17 +91,19 @@ namespace Groupr.Client.Groups
         /// <summary>
         ///     Command to delete the selected group.
         /// </summary>
-        public RelayCommand DeleteGroupCommand => new RelayCommand(async () =>
+        public RelayCommand<object> DeleteGroupCommand => new RelayCommand<object>(async value =>
         {
-            if (SelectedGroup == null)
+            if (value == null)
                 return;
+
+            var group = value as GroupViewModel;
 
             var view = new ConfirmDeleteDialog();
             var result = await DialogHost.Show(view, "MainWindow", null, null);
 
             if ((bool?) result == true)
             {
-                Groups.Remove(SelectedGroup);
+                Groups.Remove(group);
                 SelectedGroup = null;
             }
         });

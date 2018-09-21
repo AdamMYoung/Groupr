@@ -17,20 +17,33 @@
         <materialDesign:Card.InputBindings>
             <MouseBinding Gesture="LeftDoubleClick"
                           Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
-                Path=DataContext.GroupsManager.EditGroupCommand}"
-                          CommandParameter="{Binding}" />
+                Path=DataContext.GroupsManager.EditGroupCommand}" CommandParameter="{Binding}" />
         </materialDesign:Card.InputBindings>
         <DockPanel>
 
+            <!-- Group Icon -->
             <Image Width="40" Height="40" Source="{Binding Image}"
                    RenderOptions.BitmapScalingMode="NearestNeighbor"
                    RenderOptions.EdgeMode="Aliased" />
 
-            <Button Content="Open" DockPanel.Dock="Right" Margin="0,0,5,0"
-                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
-                Path=DataContext.GroupsManager.PinGroupCommand}"
-                    CommandParameter="{Binding}" />
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
 
+                <!-- Open Button -->
+                <Button Margin="0,0,5,0" Background="Transparent" BorderThickness="0"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
+                    Path=DataContext.GroupsManager.PinGroupCommand}" CommandParameter="{Binding}">
+                    <materialDesign:PackIcon Kind="OpenInNew" Height="24" Width="24" />
+                </Button>
+                
+                <!-- Delete Button -->
+                <Button Margin="0,0,5,0" Background="Transparent" BorderThickness="0"
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
+                    Path=DataContext.GroupsManager.DeleteGroupCommand}" CommandParameter="{Binding}">
+                    <materialDesign:PackIcon Kind="Delete" Height="24" Width="24" />
+                </Button>
+            </StackPanel>
+
+            <!-- Group Name -->
             <TextBlock Text="{Binding Name}" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="12"
                        TextTrimming="CharacterEllipsis" />
 

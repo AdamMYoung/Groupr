@@ -19,11 +19,16 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="New Entry" Margin="5" Command="{Binding ChildManager.CreateEntryCommand}"
-                    IsEnabled="{Binding GroupsManager.SelectedGroup, Converter={x:Static util:NullToBoolConverter.Instance}}" />
-            <Button Content="Delete Entry" Margin="5" Command="{Binding ChildManager.DeleteEntryCommand}"
-                    IsEnabled="{Binding ChildManager.SelectedChild, Converter={x:Static util:NullToBoolConverter.Instance}}" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <!-- Add -->
+            <Button Content="Add" Margin="0,0,5,0" Command="{Binding ChildManager.CreateEntryCommand}"
+                    Style="{StaticResource MaterialDesignFlatButton}" Foreground="White"
+                    Visibility="{Binding GroupsManager.SelectedGroup, Converter={x:Static util:NullToVisibilityConverter.Instance}}" />
+
+            <!-- Remove -->
+            <Button Content="Remove" Margin="5,0,0,0" Command="{Binding ChildManager.DeleteEntryCommand}"
+                    Style="{StaticResource MaterialDesignFlatButton}" Foreground="White"
+                    Visibility="{Binding ChildManager.SelectedChild, Converter={x:Static util:NullToVisibilityConverter.Instance}}" />
         </StackPanel>
 
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" ItemsSource="{Binding ChildManager.Group.Children}"

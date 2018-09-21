@@ -17,22 +17,10 @@
              d:DesignHeight="600" d:DesignWidth="400"
              d:DataContext="{d:DesignInstance window:MainViewModel}">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <!-- Buttons -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="New Group" Margin="5" Command="{Binding GroupsManager.CreateGroupCommand}" />
-            <Button Content="Delete Group" Margin="5" Command="{Binding GroupsManager.DeleteGroupCommand}"
-                    IsEnabled="{Binding GroupsManager.SelectedGroup, Converter={x:Static util:NullToBoolConverter.Instance}}" />
-        </StackPanel>
-
         <!-- Group List -->
         <ListBox VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch"
                  SelectedItem="{Binding GroupsManager.SelectedGroup}"
-                 Grid.Row="1" ItemsSource="{Binding GroupsManager.Groups}">
+                 ItemsSource="{Binding GroupsManager.Groups}">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -40,6 +28,12 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        
+        <Button HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                Command="{Binding GroupsManager.CreateGroupCommand}">
+            <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
+        </Button>
 
     </Grid>
 </UserControl>

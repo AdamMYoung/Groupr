@@ -1,8 +1,11 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Groupr.Client.Children;
 using Groupr.Client.Groups;
+using Groupr.Client.MenuBar.Help;
 using Groupr.Core.ViewModels;
 using Groupr.IO;
+using MaterialDesignThemes.Wpf;
 
 namespace Groupr.Client.Window
 {
@@ -19,6 +22,8 @@ namespace Groupr.Client.Window
             GroupsManager = new GroupsManager(FileManager.LoadGroups(), this);
         }
 
+        #region Variables
+
         /// <summary>
         ///     Manager for groups loaded into the application.
         /// </summary>
@@ -28,6 +33,9 @@ namespace Groupr.Client.Window
         ///     Manager for children of a specific group.
         /// </summary>
         public ChildManager ChildManager { get; private set; } = new ChildManager(null, null);
+
+        #endregion
+
 
         /// <summary>
         ///     Called when the children of a group has been changed, to commit the change to disk.
@@ -45,5 +53,15 @@ namespace Groupr.Client.Window
         {
             ChildManager = new ChildManager(group, this);
         }
+
+        /// <summary>
+        /// Command to open the help dialog.
+        /// </summary>
+        public RelayCommand OpenHelpCommand => new RelayCommand(async () =>
+        {
+            var view = new HelpDialog();
+
+            await DialogHost.Show(view, "MainWindow", null, null);
+        });
     }
 }
